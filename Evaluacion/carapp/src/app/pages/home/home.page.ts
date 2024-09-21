@@ -17,13 +17,13 @@ export class HomePage implements OnInit, AfterViewInit {
   ngOnInit() {
   }
   ngAfterViewInit(): void {
-    this.viewChildAnimation();
+    this.tituloanimacion();
   }
-  viewChildAnimation(){
+  tituloanimacion(){
     this.animationController
       .create()
       .addElement(this.ionTitleRef.nativeElement)
-      .duration(3200)
+      .duration(1500)
       .fromTo('transform', 'scale(0.3)', 'scale(1.2)')
       .fromTo('color', 'white', '#477DFF')
       .fromTo('opacity', '0.2', '1')

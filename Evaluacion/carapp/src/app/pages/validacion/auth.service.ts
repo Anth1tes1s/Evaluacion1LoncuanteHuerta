@@ -7,8 +7,8 @@ export class AuthService {
 
   // Datos pre-creados del usuario
   private user = {
-    username: 'admincarlos',
-    password: '123456'
+    username: 'elpapu',
+    password: '123'
   };
 
   constructor() { }
