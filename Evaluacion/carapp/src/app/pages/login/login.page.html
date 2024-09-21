@@ -1,6 +1,12 @@
+<ion-header [translucent]="true" class="ion-no-border"></ion-header>
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title class="titulo">Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/home']" class="atras">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -30,5 +36,4 @@
       </ion-button>
     </ion-label>
   </ion-item>
-
 </ion-content>
