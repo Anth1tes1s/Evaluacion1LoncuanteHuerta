@@ -9,7 +9,6 @@ import { AnimationController, IonTitle } from '@ionic/angular';
 export class HomePage implements OnInit, AfterViewInit {
   @ViewChild(IonTitle, { read: ElementRef})
   ionTitleRef!: ElementRef<HTMLIonTitleElement>
-
   constructor(
     private animationController: AnimationController
   ) { }
@@ -20,13 +19,18 @@ export class HomePage implements OnInit, AfterViewInit {
     this.tituloanimacion();
   }
   tituloanimacion(){
+    const element = document.getElementById('a');
+    if(element){
     this.animationController
       .create()
-      .addElement(this.ionTitleRef.nativeElement)
-      .duration(1500)
-      .fromTo('transform', 'scale(0.3)', 'scale(1.2)')
-      .fromTo('color', 'white', '#477DFF')
-      .fromTo('opacity', '0.2', '1')
+      .addElement(element)
+      .duration(2000)
+      .keyframes([
+        { offset: 0, transform: 'scale(1)', opacity: '1', color: 'white'},
+        { offset: 0.5, transform: 'scale(0.6)', opacity: '0.1' },
+        { offset: 1, transform: 'scale(1)', opacity: '1', color: '#477DFF' },
+      ])
       .play()
+    }
   }
 }
