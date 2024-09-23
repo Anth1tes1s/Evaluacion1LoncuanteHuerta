@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild  } from '@angular/core';
 import { AnimationController, IonTitle } from '@ionic/angular';
-import { AuthService } from '../validacion/auth.service'; // Importar el servicio
-import { NavController } from '@ionic/angular'; // Para la navegación entre páginas
+import { AuthService } from '../validacion/auth.service'; 
+import { NavController } from '@ionic/angular'; 
 
 @Component({
   selector: 'app-reset-password',
@@ -12,8 +12,7 @@ export class ResetPasswordPage implements OnInit, AfterViewInit {
   @ViewChild(IonTitle, { read: ElementRef})
   ionTitleRef!: ElementRef<HTMLIonTitleElement>
   username: string = '';
-  password: string | null = ''; // Variable para almacenar la contraseña recuperada
-
+  password: string | null = '';
   constructor(
     private authService: AuthService,
     private navCtrl: NavController,
@@ -36,12 +35,12 @@ export class ResetPasswordPage implements OnInit, AfterViewInit {
       .play()
   }
 
-  // Método para obtener la contraseña
+
   retrievePassword() {
     this.password = this.authService.getPassword(this.username);
   }
 
-  // Método para volver al login
+
   goToLogin() {
     this.navCtrl.navigateBack('/login');
   }
