@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild  } from '@angular/core';
 import { AnimationController, IonTitle, ToastController, NavController} from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
-import { AuthService } from '../validacion/auth.service';
+import { AuthService } from '../cosas/validacion/auth.service';
 
 @Component({
   selector: 'app-login',
