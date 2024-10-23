@@ -1,76 +1,42 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild  } from '@angular/core';
-import { AnimationController, IonTitle, ToastController, NavController} from '@ionic/angular';
-import { NavigationExtras, Router } from '@angular/router';
-import { AuthService } from '../validacion/auth.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service'; // Asegúrate de que la ruta sea correcta
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit, AfterViewInit {
-  @ViewChild(IonTitle, { read: ElementRef})
-  ionTitleRef!: ElementRef<HTMLIonTitleElement>
-  username: string = '';
-  password: string = '';
+export class LoginPage {
+  email!: string;
+  password!: string;
 
   constructor(
-    private toastController: ToastController,
-    private navCtrl: NavController,
-    private animationController: AnimationController,
     private router: Router,
-    private loginService: AuthService
-  ) {
-    this.username = ':v'
-    this.password = '';
-   }
-  ngOnInit() {
-  }
-  ngAfterViewInit(): void {
-    this.tituloanimacion();
-  }
-  tituloanimacion(){
-    this.animationController
-      .create()
-      .addElement(this.ionTitleRef.nativeElement)
-      .duration(1600)
-      .fromTo('transform', 'scale(0.2)', 'scale(1)')
-      .fromTo('color', 'white', '#477DFF')
-      .fromTo('opacity', '0.2', '1')
-      .play()
-  }
+    private authService: AuthService, // Inyecta el AuthService
+    private alertController: AlertController
+  ) {}
 
-  // Método para validar el login (mantén el código de validación aquí)
-  async validateUser(){
-    console.log("Ejecutando validacion PAGE!")
+  async login() {
+    // Verifica si el usuario existe
+    const usuarioExiste = this.authService.verificarUsuario(this.email, this.password);
 
-    if (this.loginService.validateUser(this.username, this.password)) {
-      this.mensaje('Usuario correcto', 'success')
-      const extras: NavigationExtras = {
-        state: {
-          username: this.username
-        }
-      }
-
-      this.router.navigate(['/inicio'], extras)
+    if (usuarioExiste) {
+      const alert = await this.alertController.create({
+        header: 'Éxito',
+        message: 'Usuario ingresado correctamente.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      this.router.navigateByUrl('/indexusuario'); // Redirige al index de usuarios
     } else {
-      this.mensaje('Usuario incorrecto', 'danger')
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Ingreso de datos incorrectos, inténtelo nuevamente.',
+        buttons: ['OK']
+      });
+      await alert.present();
     }
-  }
-   // Mensaje ajustes
-  async mensaje(message: string, color: string){
-    const toast = await this.toastController.create({
-      duration: 3000,
-      message: message,
-      position: 'bottom',
-      color: color
-    });
-    toast.present();
-  }
-    
-
-  // Método para redirigir al "Recuperar Contraseña"
-  goToResetPassword() {
-    this.navCtrl.navigateForward('/reset-password');
   }
 }

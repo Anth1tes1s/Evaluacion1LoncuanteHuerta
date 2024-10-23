@@ -1,39 +1,25 @@
-<ion-header [translucent]="true" class="ion-no-border"></ion-header>
 <ion-header>
   <ion-toolbar>
-    <ion-title class="titulo">Login</ion-title>
-    <ion-buttons slot="start">
-      <ion-button [routerLink]="['/home']" class="atras">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <form (submit)="login()">
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input [(ngModel)]="username" name="username" required></ion-input>
+    </ion-item>
 
-  <!-- Formulario de login -->
-  <ion-item>
-    <ion-label position="floating">Nombre de usuario</ion-label>
-    <ion-input [(ngModel)]="username" type="text"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" type="password" name="password" required></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input [(ngModel)]="password" type="password"></ion-input>
-  </ion-item>
+    <ion-button expand="full" type="submit">Iniciar Sesión</ion-button>
 
-  <!-- Botón de Ingresar -->
-  <ion-button expand="full" class="ion-margin-top" (click)="validateUser()">
-    Ingresar
-  </ion-button>
+    <p class="forgot-password" (click)="navigateToResetPassword()">¡¿No recuerdas tu contraseña?!</p>
 
-  <!-- Enlace para recuperar la contraseña -->
-  <ion-item lines="none">
-    <ion-label class="ion-text-center">
-      <ion-button fill="clear" color="medium" (click)="goToResetPassword()">
-        ¿No recuerdas tu contraseña?
-      </ion-button>
-    </ion-label>
-  </ion-item>
+    <ion-text [color]="loginError ? 'danger' : 'success'">{{ message }}</ion-text>
+  </form>
 </ion-content>

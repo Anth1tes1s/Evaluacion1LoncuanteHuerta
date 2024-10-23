@@ -1,14 +1,20 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title class="titulo">Inicio</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToLogin()">¿Ya tienes una cuenta?</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateToRegister()">¡Regístrate si no!</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-button expand="full" routerLink="/inicio">
-    Si cuentan con movilización
-  </ion-button>
-  <ion-button expand="full" routerLink="/inicio">
-    No cuentan con movilización
-  </ion-button>
+  <div class="content-center">
+    <p>
+      TeLlevoAPP es una solución creada por estudiantes para resolver el problema del retorno a casa al término de las clases,
+      ofreciendo una opción de transporte para estudiantes que no tienen movilización propia o acceso a transporte público.
+    </p>
+    <ion-img [src]="imageSrc" alt="Imagen de la App"></ion-img>
+  </div>
 </ion-content>

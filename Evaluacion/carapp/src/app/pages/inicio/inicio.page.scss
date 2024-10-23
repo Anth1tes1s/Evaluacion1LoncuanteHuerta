@@ -1,7 +1,14 @@
-.titulo {
-    text-align: center;
-    color: ;
-  }
-.atras {
-    position: absolute;
+.content-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+ion-img {
+  margin-top: 20px;
+  width: 300px; /* Ancho sugerido */
+  height: 300px; /* Alto sugerido */
 }

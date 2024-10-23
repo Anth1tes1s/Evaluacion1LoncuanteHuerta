@@ -1,13 +1,33 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>indexusuarios</ion-title>
+    <ion-title>Bienvenido, Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">indexusuarios</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Opciones de Navegación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item button>
+          <ion-icon slot="start" name="car-outline"></ion-icon>
+          Solicitar un Vehículo
+        </ion-item>
+        <ion-item button>
+          <ion-icon slot="start" name="map-outline"></ion-icon>
+          Ver Mapa
+        </ion-item>
+        <ion-item button>
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          Ver Perfil
+        </ion-item>
+        <ion-item button>
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          Cerrar Sesión
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
